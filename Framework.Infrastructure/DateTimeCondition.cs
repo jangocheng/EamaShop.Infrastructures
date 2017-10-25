@@ -7,7 +7,7 @@ namespace Framework.Infrastructure
     /// <summary>
     /// 表示时间区间的所有条件
     /// </summary>
-    public class DateTimeCondition
+    public sealed class DateTimeCondition:IntervalCondition<DateTime>
     {
 
         /// <inheritdoc />
@@ -30,11 +30,11 @@ namespace Framework.Infrastructure
         /// <summary>
         /// 从指定的时间开始，默认从1970年1月1日开始
         /// </summary>
-        public DateTime Start { get; set; }
+        public override DateTime Start { get; set; }
 
         /// <summary>
         /// 截至到指定的时间 默认截至到当前
         /// </summary>
-        public DateTime End { get; set; }
+        public override DateTime End { get; set; }
     }
 }

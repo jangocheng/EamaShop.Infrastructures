@@ -11,7 +11,7 @@ namespace Framework.Infrastructure.DataPages
     /// 分页枚举的默认实现
     /// </summary>
     /// <typeparam name="TElemet"></typeparam>
-    public class PageEnumerable<TElemet> : IPageEnumerable<TElemet> where TElemet : class
+    internal class PageEnumerable<TElemet> : IPageEnumerable<TElemet> where TElemet : class
     {
         private readonly TElemet[] _elemets;
         /// <summary>
