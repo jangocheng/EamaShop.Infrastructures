@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Framework.Domain\Framework.Domain.csproj" />
+    <ProjectReference Include="..\Framework.Domain.Abstractions\Framework.Domain.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

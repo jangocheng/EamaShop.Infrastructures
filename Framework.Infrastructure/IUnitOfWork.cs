@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Framework.Domain;
+using Framework.Domain.Abstractions;
 
 namespace Framework.Infrastructure
 {

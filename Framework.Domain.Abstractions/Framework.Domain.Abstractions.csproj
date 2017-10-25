@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Description>为所有的领域对象定义和提供公共的抽象行为</Description>
+    <PackageReleaseNotes>为领域Domain对象提供多个抽象</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>

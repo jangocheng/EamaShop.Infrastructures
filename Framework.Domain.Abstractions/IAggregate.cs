@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Framework.Domain
+namespace Framework.Domain.Abstractions
 {
     /// <summary>
-    /// 领域聚合根
+    /// 定义领域对象的聚合属性
     /// </summary>
     public interface IAggregate
     {
+
         /// <summary>
         /// 主键
         /// </summary>
@@ -16,7 +15,7 @@ namespace Framework.Domain
         /// <summary>
         /// 记录的状态
         /// </summary>
-        Status Status { get; set; }
+        RecordStatus Status { get; set; }
         /// <summary>
         /// 数据的创建时间
         /// </summary>
@@ -25,5 +24,6 @@ namespace Framework.Domain
         /// 上次修改该数据的时间
         /// </summary>
         DateTime ModifiedTime { get; set; }
+
     }
 }
