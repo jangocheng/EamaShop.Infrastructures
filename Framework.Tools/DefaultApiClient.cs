@@ -13,10 +13,12 @@ namespace Framework.Tools
         public DefaultApiClient( ILoggerFactory factory) : base(new DefaultConfiguration(), factory)
         {
         }
+        
 
-        protected override Task<HttpContent> CreateHttpContentAsync<TResponse>(ApiParameter<TResponse> parameter, HttpMethod method, Uri uri)
+        protected override Task<HttpContent> CreateHttpContentAsync<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter, HttpMethod method, Uri uri)
         {
             return Task.FromResult<HttpContent>(new StringContent(string.Empty));
+
         }
     }
 }

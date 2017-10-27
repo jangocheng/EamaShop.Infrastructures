@@ -6,10 +6,8 @@ using Framework.Infrastructure.ApiAccessor;
 
 namespace Framework.Tools
 {
-    public class BaiduApiResponse : ApiResponse
+    public class BaiduApiResponse 
     {
-        public BaiduApiResponse(HttpStatusCode code, IDictionary<string, string> headers) : base(code, headers)
-        {
-        }
+        
     }
 }
