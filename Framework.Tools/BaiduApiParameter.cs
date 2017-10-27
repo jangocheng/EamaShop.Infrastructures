@@ -7,21 +7,17 @@ using Framework.Infrastructure.ApiAccessor;
 
 namespace Framework.Tools
 {
-    public class BaiduApiParameter:ApiParameter<BaiduApiResponse>
+    public class BaiduApiParameter : ApiParameter<string, BaiduApiResponse>
     {
-        public override Uri GetApiUri()
-        {
-            return new Uri("https://www.baidu.com");
-        }
+       
 
-        public override HttpMethod GetMethod()
-        {
-            return HttpMethod.Get;
-        }
 
-        public override BaiduApiResponse CreateResponse(string content, string contentType, HttpStatusCode code, IDictionary<string, string> headers)
+        public override Uri ApiUri => new Uri("https://www.baidu.com");
+        public override HttpMethod Method => HttpMethod.Get;
+        public override string Parameters => "";
+        public override BaiduApiResponse CreateResult(string content, string contentType)
         {
-            return new BaiduApiResponse(code, headers);
+            return new BaiduApiResponse();
         }
     }
 }
