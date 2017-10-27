@@ -58,7 +58,7 @@ namespace Framework.Tools
                     {
                         i++;
                         Thread.Sleep(1000);
-                        if (!string.IsNullOrEmpty(name) && i == 10) break;
+                        if (!string.IsNullOrEmpty(name) || i == 10) break;
                     }
                 });
             }
