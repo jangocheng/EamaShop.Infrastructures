@@ -9,17 +9,18 @@ namespace Framework.Infrastructure.ApiAccessor
     /// <summary>
     /// 表示可按指定格式进行转换的请求参数结果对象
     /// </summary>
-    /// <typeparam name="TResponse"></typeparam>
-    public abstract class FormatApiParameter<TResponse> : ApiParameter<TResponse> where TResponse : ApiResponse
+    /// <typeparam name="TRequest"></typeparam>
+    /// <typeparam name="TResult"></typeparam>
+    public abstract class FormatApiParameter<TRequest, TResult> : ApiParameter<TRequest, TResult> where TResult : class
     {
         /// <summary>
         /// 获取当前的类型对象是否可序列化
         /// </summary>
         /// <returns></returns>
-        protected abstract bool CanSerialize(string content, string mediaType, Encoding encoding, HttpStatusCode code, IDictionary<string, string> headers);
+        protected abstract bool CanSerialize(string content, string mediaType, Encoding encoding);
 
         /// <inheritdoc />
-        public override TResponse CreateResponse(string content, string contentType, HttpStatusCode code, IDictionary<string, string> headers)
+        public override TResult CreateResult(string content, string contentType)
         {
             Check.NotNull(contentType, nameof(contentType));
             var ps = contentType.Split(';');
@@ -35,10 +36,10 @@ namespace Framework.Infrastructure.ApiAccessor
                 }
             }
             var encoding = Encoding.GetEncoding(charset);
-            var flag = CanSerialize(content, mediaType, encoding, code, headers);
+            var flag = CanSerialize(content, mediaType, encoding);
             if (flag)
             {
-                return Serialize(content, encoding, code, headers);
+                return Serialize(content, encoding);
             }
             throw new NotSupportedException("不支持的响应类型");
         }
@@ -47,9 +48,7 @@ namespace Framework.Infrastructure.ApiAccessor
         /// </summary>
         /// <param name="content"></param>
         /// <param name="encoding"></param>
-        /// <param name="code"></param>
-        /// <param name="headers"></param>
         /// <returns></returns>
-        protected abstract TResponse Serialize(string content, Encoding encoding, HttpStatusCode code, IDictionary<string, string> headers);
+        protected abstract TResult Serialize(string content, Encoding encoding);
     }
 }

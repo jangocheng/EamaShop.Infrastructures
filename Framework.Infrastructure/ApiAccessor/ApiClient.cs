@@ -34,7 +34,7 @@ namespace Framework.Infrastructure.ApiAccessor
         public TPlatform Configuration { get; }
 
         /// <inheritdoc />
-        public virtual async Task<TResponse> SendAsync<TResponse>(ApiParameter<TResponse> parameter) where TResponse : ApiResponse
+        public virtual async Task<ApiResponse<TResult>> SendAsync<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter) where TResult : class
         {
             using (_logger.BeginRequest(parameter))
             {
@@ -46,28 +46,32 @@ namespace Framework.Infrastructure.ApiAccessor
                 return result;
             }
         }
+
         /// <summary>
         /// 创建发送指定请求的Api客户端
         /// </summary>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="parameter"></param>
+        /// <typeparam name="TParameter">请求的参数实体类型</typeparam>
+        /// <typeparam name="TResult">响应的结果实体类型</typeparam>
+        /// <param name="parameter">该请求的所携带的参数信息</param>
         /// <returns></returns>
-        protected virtual Task<HttpClient> CreateHttpClientAsync<TResponse>(ApiParameter<TResponse> parameter) where TResponse : ApiResponse
+        protected virtual Task<HttpClient> CreateHttpClientAsync<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter) where TResult : class
         {
             _logger.LogTrace("获取默认的单例共享 HttpClient 对象");
             return Task.FromResult(HttpClient);
         }
+
         /// <summary>
-        /// 从给定 <see cref="ApiParameter{TResponse}"/> 上创建该请求对应的
+        /// 从给定 <see cref="ApiParameter{TParameter, TResult}"/> 上创建该请求对应的
         ///  <see cref="HttpRequestMessage"/> 对象
         /// </summary>
-        /// <typeparam name="TResponse">该请求的返回值</typeparam>
+        /// <typeparam name="TParameter">请求的参数实体类型</typeparam>
+        /// <typeparam name="TResult">响应的结果实体类型</typeparam>
         /// <param name="parameter">该请求的所携带的参数信息</param>
         /// <returns></returns>
-        protected virtual async Task<HttpRequestMessage> CreateRequestMessageAsync<TResponse>(ApiParameter<TResponse> parameter) where TResponse : ApiResponse
+        protected virtual async Task<HttpRequestMessage> CreateRequestMessageAsync<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter) where TResult : class
         {
             _logger.LogTrace("创建默认的请求消息参数上下文 HttpRequestMessage 对象");
-            var method = parameter.GetMethod();
+            var method = parameter.Method;
             var uri = GenerateRequestUri(parameter, method);
             var result =
                 new HttpRequestMessage(method, uri) { Content = await CreateHttpContentAsync(parameter, method, uri) };
@@ -75,39 +79,50 @@ namespace Framework.Infrastructure.ApiAccessor
         }
 
         /// <summary>
-        /// 默认直接采用请求参数的<see cref="ApiParameter{TResponse}.GetApiUri"/>
+        /// 默认直接采用请求参数的<see cref="ApiParameter{TParameter, TResult}.ApiUri"/>
         /// </summary>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="parameter"></param>
-        /// <param name="method"></param>
-        /// <returns></returns>
-        protected virtual Uri GenerateRequestUri<TResponse>(ApiParameter<TResponse> parameter, HttpMethod method) where TResponse : ApiResponse
+        /// <typeparam name="TResult">响应的结果实体类型</typeparam>
+        /// <typeparam name="TParameter">请求的参数实体类型</typeparam>
+        /// <param name="parameter">请求信息</param>
+        /// <param name="method">请求方法</param>
+        /// <returns>请求的uri</returns>
+        protected virtual Uri GenerateRequestUri<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter, HttpMethod method) where TResult : class
         {
             _logger.LogTrace("获取默认请求参数的Uri");
-            return parameter.GetApiUri();
+            return parameter.ApiUri;
         }
+
         /// <summary>
-        /// 从给定的 <see cref="ApiParameter{TResponse}"/> 上创建与之对应的
+        /// 从给定的 <see cref="ApiParameter{TParameter, TResult}"/> 上创建与之对应的
         /// <see cref="HttpContent"/> 请求正文
         /// </summary>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="parameter"></param>
-        /// <param name="method"></param>
-        /// <param name="uri"></param>
-        /// <returns></returns>
-        protected abstract Task<HttpContent> CreateHttpContentAsync<TResponse>(ApiParameter<TResponse> parameter, HttpMethod method, Uri uri)
-            where TResponse : ApiResponse;
+        /// <typeparam name="TParameter">请求的参数实体类型</typeparam>
+        /// <typeparam name="TResult">响应的结果实体类型</typeparam>
+        /// <param name="parameter">请求信息</param>
+        /// <param name="method">请求方法</param>
+        /// <param name="uri">请求的uri</param>
+        /// <returns>请求正文</returns>
+        protected abstract Task<HttpContent> CreateHttpContentAsync<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter, HttpMethod method, Uri uri)
+             where TResult : class;
+
         /// <summary>
-        /// 创建给定的 <see cref="ApiParameter{TResponse}"/> 的响应实体信息
+        /// 创建给定的 <see cref="ApiParameter{TParameter,TResult}"/> 的响应实体信息
         /// </summary>
-        /// <typeparam name="TResponse">响应的实体</typeparam>
+        /// <typeparam name="TParameter">请求的参数类型</typeparam>
+        /// <typeparam name="TResult">响应的实体</typeparam>
         /// <param name="parameter">发送的请求</param>
         /// <param name="response">第三方服务器返回的
         ///  <see cref="HttpResponseMessage"/> 信息</param>
-        /// <returns><typeparamref name="TResponse"/> 类型的响应实体</returns>
-        protected virtual async Task<TResponse> CreateResponseAsync<TResponse>(ApiParameter<TResponse> parameter, HttpResponseMessage response)
-            where TResponse : ApiResponse
-        => parameter.CreateResponse(await response.Content.ReadAsStringAsync(), response.Content.Headers.ContentType.ToString(), response.StatusCode, response.Headers.ToDictionary(x => x.Key, x => string.Join(" ", x.Value)));
+        /// <returns><see cref="ApiResponse{TResult}"/> 类型的响应实体</returns>
+        protected virtual async Task<ApiResponse<TResult>> CreateResponseAsync<TParameter, TResult>(
+            ApiParameter<TParameter, TResult> parameter, HttpResponseMessage response) where TResult : class
+        {
+
+            var result = parameter.CreateResult(await response.Content.ReadAsStringAsync(), response.Content.Headers.ContentType.ToString());
+
+            return new DefaultApiResponse<TResult>(response.StatusCode,
+                response.Headers.ToDictionary(x => x.Key, x => string.Join(" ", x.Value)), result);
+        }
 
     }
 }

@@ -8,7 +8,7 @@ namespace Framework.Infrastructure.ApiAccessor
     /// <summary>
     /// 表示第三方接口请求返回的正文实体公共基类
     /// </summary>
-    public abstract class ApiResponse
+    public abstract class ApiResponse<TResult>
     {
         
         /// <summary>
@@ -29,5 +29,9 @@ namespace Framework.Infrastructure.ApiAccessor
         /// 响应头信息
         /// </summary>
         public virtual IDictionary<string, string> Headers { get;}
+        /// <summary>
+        /// 服务器返回的结果
+        /// </summary>
+        public abstract TResult Result { get; }
     }
 }

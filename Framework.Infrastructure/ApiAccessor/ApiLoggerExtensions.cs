@@ -16,7 +16,7 @@ namespace Framework.Infrastructure.ApiAccessor
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="parameter"></param>
-        public static IDisposable BeginRequest<TResponse>(this ILogger logger, ApiParameter<TResponse> parameter) where TResponse : ApiResponse
+        public static IDisposable BeginRequest<TParameter, TResult>(this ILogger logger, ApiParameter<TParameter, TResult> parameter) where TResult : class
         {
             return logger.BeginScope(parameter);
         }
