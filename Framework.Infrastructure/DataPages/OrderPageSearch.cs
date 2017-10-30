@@ -17,6 +17,6 @@ namespace Framework.Infrastructure.DataPages
         /// <summary>
         /// 排序的字段集合
         /// </summary>
-        public string[] OrderByFields { get; set; } = { nameof(IAggregate.ModifiedTime) };
+        public string[] OrderByFields { get; set; } = { nameof(IStatusRecord.ModifiedTime) };
     }
 }

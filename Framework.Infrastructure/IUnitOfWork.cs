@@ -17,13 +17,13 @@ namespace Framework.Infrastructure
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        bool RegisterAdd<T>(T entity) where T : class, IAggregate;
+        bool RegisterAdd<T>(T entity) where T : class, IStatusRecord;
         /// <summary>
         /// 注册指定的实体用于从数据库中更新
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        bool RegisterUpdate<T>(T entity) where T : class, IAggregate;
+        bool RegisterUpdate<T>(T entity) where T : class, IStatusRecord;
         /// <summary>
         /// 注册指定的实体用于从数据库中删除
         /// </summary>
@@ -31,7 +31,7 @@ namespace Framework.Infrastructure
         /// <param name="entity"></param>
         /// <param name="logic">是否是逻辑删除</param>
         /// <returns></returns>
-        bool RegisterDelete<T>(T entity, bool logic = true) where T : class, IAggregate;
+        bool RegisterDelete<T>(T entity, bool logic = true) where T : class, IStatusRecord;
 
         /// <summary>
         /// 将局部更新的操作注册到工作单元
@@ -40,7 +40,7 @@ namespace Framework.Infrastructure
         /// <param name="entity"></param>
         /// <param name="propertyNames">需要更新的字段集合</param>
         /// <returns></returns>
-        bool RegisterUpdateOnly<T>(T entity, params string[] propertyNames) where T : class, IAggregate;
+        bool RegisterUpdateOnly<T>(T entity, params string[] propertyNames) where T : class, IStatusRecord;
         /// <summary>
         /// 提交该次工作单元的所有数据操作
         /// </summary>

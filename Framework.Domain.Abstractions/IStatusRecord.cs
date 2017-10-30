@@ -3,15 +3,10 @@
 namespace Framework.Domain.Abstractions
 {
     /// <summary>
-    /// 定义领域对象的聚合属性
+    /// 表示是具有状态的数据记录
     /// </summary>
-    public interface IAggregate
+    public interface IStatusRecord
     {
-
-        /// <summary>
-        /// 主键
-        /// </summary>
-        long Id { get; set; }
         /// <summary>
         /// 记录的状态
         /// </summary>
