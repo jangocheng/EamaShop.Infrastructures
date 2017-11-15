@@ -16,7 +16,7 @@ namespace Framework.Infrastructure.Configuration
         /// <inheritdoc />
         public ZookeeperConfigurationSource(ZookeeperOptions options)
         {
-            Check.NotNull(options, nameof(options));
+            Checker.NotNull(options, nameof(options));
             _options = options;
         }
         /// <inheritdoc />

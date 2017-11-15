@@ -1,6 +1,4 @@
-﻿
-
-using Framework.Domain.Abstractions;
+﻿using Framework.Infrastructure.Entity;
 
 namespace Framework.Infrastructure.DataPages
 {

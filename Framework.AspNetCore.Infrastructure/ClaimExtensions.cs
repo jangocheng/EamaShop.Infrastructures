@@ -8,6 +8,11 @@ namespace Framework.AspNetCore.Infrastructure
 {
     public static class ClaimExtensions
     {
+        /// <summary>
+        /// 获取用户的UId
+        /// </summary>
+        /// <param name="principal"></param>
+        /// <returns></returns>
         public static long UserId(this ClaimsPrincipal principal)
         {
             var id = principal.Claims.FirstOrDefault(x => x.Type == "Id" && x.ValueType == ClaimValueTypes.Integer64)?.Value;
@@ -29,7 +34,11 @@ namespace Framework.AspNetCore.Infrastructure
         {
             return principal.IsInRole(e.ToString());
         }
-
+        /// <summary>
+        /// 获取用户的创建时间
+        /// </summary>
+        /// <param name="principal"></param>
+        /// <returns></returns>
         public static DateTime CreateTime(this ClaimsPrincipal principal)
         {
             var datetime =

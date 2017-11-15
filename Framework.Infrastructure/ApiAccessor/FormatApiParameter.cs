@@ -22,7 +22,7 @@ namespace Framework.Infrastructure.ApiAccessor
         /// <inheritdoc />
         public override TResult CreateResult(string content, string contentType)
         {
-            Check.NotNull(contentType, nameof(contentType));
+            Checker.NotNull(contentType, nameof(contentType));
             var ps = contentType.Split(';');
             var mediaType = ps[0];
             var charset = "utf-8";

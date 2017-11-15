@@ -8,7 +8,7 @@ namespace Framework.Infrastructure
     /// <summary>
     /// 验证对象
     /// </summary>
-    public static class Check
+    public static class Checker
     {
         /// <summary>
         /// 对象不可能为null,如果为null 抛出 <see cref="ArgumentNullException"/>
@@ -55,17 +55,17 @@ namespace Framework.Infrastructure
         {
             if (obj == null)
             {
-                BizShortCircuit(document);
+                BizShortCircuit(document, 1);
             }
         }
         /// <summary>
-        /// 使用指定的提示文案告知用户错误
+        /// 使用指定的错误信息和错误代码抛出 <see cref="BizException"/> 异常
         /// </summary>
         /// <param name="document"></param>
-        public static void BizShortCircuit(string document)
+        public static void BizShortCircuit(string document, int code)
         {
             NotNull(document, nameof(document));
-            throw new BizException(document);
+            throw new BizException(document, code);
         }
 
     }

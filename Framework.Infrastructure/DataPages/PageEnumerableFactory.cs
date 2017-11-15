@@ -10,7 +10,7 @@ namespace Framework.Infrastructure.DataPages
         /// <inheritdoc />
         public IPageEnumerable<TElemet> CreatePageEnumerable<TElemet>(long total, IEnumerable<TElemet> sources) where TElemet : class
         {
-            Check.NotNull(sources, nameof(sources));
+            Checker.NotNull(sources, nameof(sources));
             return new PageEnumerable<TElemet>(total, sources);
         }
     }

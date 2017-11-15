@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Framework.Tools
 {
-    public class DefaultApiClient:ApiClient<DefaultConfiguration>
+    public class DefaultApiClient:HttpApiClient<DefaultConfiguration>
     {
         public DefaultApiClient( ILoggerFactory factory) : base(new DefaultConfiguration(), factory)
         {

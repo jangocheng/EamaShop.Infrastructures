@@ -38,7 +38,7 @@ namespace Framework.Infrastructure.ApiAccessor
         /// <inheritdoc />
         protected override bool CanSerialize(string content, string mediaType, Encoding encoding)
         {
-            Check.NotNull(mediaType, nameof(mediaType));
+            Checker.NotNull(mediaType, nameof(mediaType));
 
             return mediaType.ToLower().Equals(JsonMediaType);
         }

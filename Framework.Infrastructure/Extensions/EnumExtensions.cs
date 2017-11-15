@@ -19,7 +19,7 @@ namespace Framework.Infrastructure.Extensions
         /// <returns></returns>
         public static string GetDescription(this Enum e)
         {
-            Check.NotNull(e, nameof(e));
+            Checker.NotNull(e, nameof(e));
             var typeInfo = e.GetType().GetTypeInfo();
             var description = typeInfo.GetCustomAttribute<DescriptionAttribute>();
             return description?.Description;

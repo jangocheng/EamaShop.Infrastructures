@@ -29,7 +29,7 @@ namespace Framework.Infrastructure.MessageQueue
         /// </summary>
         public RabbitMqConsumer(IOptions<RabbitMqOptions> options)
         {
-            Check.NotNull(options, nameof(options));
+            Checker.NotNull(options, nameof(options));
             _serializer = options.Value.Serializer;
             _encoding = options.Value.Encoding;
             _factory = new ConnectionFactory

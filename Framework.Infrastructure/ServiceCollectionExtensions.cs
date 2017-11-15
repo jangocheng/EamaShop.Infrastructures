@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Framework.Infrastructure.Cache;
 using Framework.Infrastructure.Configuration;
 using Framework.Infrastructure.Converter;
 using Framework.Infrastructure.DataPages;
@@ -25,7 +24,10 @@ namespace Framework.Infrastructure
         /// <returns></returns>
         public static IServiceCollection AddInfrastructures(this IServiceCollection service)
         {
-            service.AddInfrastructures(Configure);
+            service.AddInfrastructures((opt) =>
+            {
+
+            });
             return service;
         }
         /// <summary>
@@ -35,27 +37,11 @@ namespace Framework.Infrastructure
         /// <param name="configure"></param>
         /// <returns></returns>
         public static IServiceCollection AddInfrastructures(this IServiceCollection service,
-            Action<InfrastructureOptions> configure)
+            Action<RabbitMqOptions> configure)
         {
-            Check.NotNull(configure, nameof(configure));
-            var option = new InfrastructureOptions();
-            configure(option);
-            service.AddInfrastructures(option);
-            return service;
-        }
-        /// <summary>
-        /// 使用指定的配置，配置基础设施服务
-        /// </summary>
-        /// <param name="service"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        public static IServiceCollection AddInfrastructures(this IServiceCollection service, InfrastructureOptions options)
-        {
-            Check.NotNull(service, nameof(service));
-            Check.NotNull(options, nameof(options));
-            // redis
-            service.TryAddSingleton<IAsyncCache, RedisAsyncCache>();
-            service.Configure(options.RedisConfigure);
+            Checker.NotNull(configure, nameof(configure));
+            Checker.NotNull(service, nameof(service));
+            service.Configure(configure);
             // common
             service.TryAddSingleton<ISerializer, Serializer>();
             service.TryAddSingleton<IPageEnumerableFactory, PageEnumerableFactory>();
@@ -64,33 +50,8 @@ namespace Framework.Infrastructure
             //rabbit
             service.TryAddTransient(typeof(IProducer<>), typeof(RabbitMqProducer<>));
             service.TryAddTransient(typeof(IConsumer<>), typeof(RabbitMqConsumer<>));
-            service.Configure(options.RabbitConfigure);
-
+            service.TryAddSingleton(typeof(IObservable<>), typeof(RabbitObservable<>));
             return service;
-        }
-
-        internal static void Configure(InfrastructureOptions options)
-        {
-            options.RedisConfigure = ConfigureRedis;
-            options.RabbitConfigure = ConfigureRabbit;
-        }
-
-        internal static void ConfigureRedis(RedisOptions options)
-        {
-            //options.IpAddress = "localhost";
-            //options.Port = 6379;
-            //options.Serializer = new Serializer();
-        }
-
-        internal static void ConfigureRabbit(RabbitMqOptions options)
-        {
-            //options.Encoding = Encoding.UTF8;
-            //options.IpAddress = "localhost";
-            //options.Password = "guest";
-            //options.Port = 5672;
-            //options.QueueSelector = (t) => t.FullName;
-            //options.Serializer = new Serializer();
-            //options.UserName = "guest";
         }
     }
 }

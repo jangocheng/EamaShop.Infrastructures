@@ -19,7 +19,7 @@ namespace Framework.Infrastructure.DataPages
         /// </summary>
         public PageEnumerable(long total, IEnumerable<TElemet> datas)
         {
-            Check.NotNull(datas, nameof(datas));
+            Checker.NotNull(datas, nameof(datas));
             _elemets = datas.ToArray();
             Total = total;
         }

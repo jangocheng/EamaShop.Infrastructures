@@ -19,7 +19,7 @@ namespace Framework.Infrastructure.Configuration
         /// <inheritdoc />
         public ZookeeperConfigurationProvider(ZookeeperOptions options)
         {
-            Check.NotNull(options, nameof(options));
+            Checker.NotNull(options, nameof(options));
             _options = options;
 
         }

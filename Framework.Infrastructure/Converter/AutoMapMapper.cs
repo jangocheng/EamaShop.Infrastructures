@@ -37,8 +37,8 @@ namespace Framework.Infrastructure.Converter
         public object To(object source, Type sourceType, Type desctinationType)
         {
             if (source == null) return null;
-            Check.NotNull(sourceType, nameof(sourceType));
-            Check.NotNull(desctinationType, nameof(desctinationType));
+            Checker.NotNull(sourceType, nameof(sourceType));
+            Checker.NotNull(desctinationType, nameof(desctinationType));
             return Mapper.Map(source, sourceType, desctinationType);
         }
     }

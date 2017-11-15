@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
-
+using Framework.Infrastructure.Properties;
 namespace Framework.Infrastructure
 {
     /// <summary>
     /// 文案信息
     /// </summary>
-    internal class Resources
+    internal partial class Resources
     {
-        private const string ApiClientResponseDescriptionFormat =
-            "客户端:{0}发送了请求,\r\n 请求的uri为:{1}; \r\n 请求的方式为:{2};\r\n 请求的参数正文为:{3} \r\n 响应的结果为:{4}; \r\n 状态码:{5};\r\n 正文类型为:{6}\r\n";
         public static string ApiClientResponseDescription(string clientName, HttpResponseMessage httpResponse)
         {
-            return string.Format(ApiClientResponseDescriptionFormat,
+            
+            return string.Format(Properties.Resources.Api_Response_Format,
                 clientName,
                 httpResponse.RequestMessage.RequestUri,
                 httpResponse.RequestMessage.Method,

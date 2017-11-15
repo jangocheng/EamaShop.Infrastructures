@@ -13,7 +13,7 @@ namespace Framework.Infrastructure.ApiAccessor
     /// 为所有的对Http的WebApi接口请求客户端提供基础公共实现
     /// </summary>
     /// <typeparam name="TPlatform">该接口客户端的配置信息</typeparam>
-    public abstract class ApiClient<TPlatform> : IApiClient<TPlatform> where TPlatform : IApiConfiguration
+    public abstract class HttpApiClient<TPlatform> : IApiClient<TPlatform> where TPlatform : IApiConfiguration
     {
         /// <summary>
         /// 获取默认的Http请求发送客户端
@@ -22,12 +22,12 @@ namespace Framework.Infrastructure.ApiAccessor
 
         private readonly ILogger _logger;
         /// <summary>
-        /// 初始化 <see cref="ApiClient{TPlatform}"/> 类型的新实例
+        /// 初始化 <see cref="HttpApiClient{TPlatform}"/> 类型的新实例
         /// </summary>
-        protected ApiClient(TPlatform platform, ILoggerFactory factory)
+        protected HttpApiClient(TPlatform platform, ILoggerFactory factory)
         {
             Configuration = platform;
-            _logger = factory.CreateLogger<ApiClient<TPlatform>>();
+            _logger = factory.CreateLogger<HttpApiClient<TPlatform>>();
         }
 
         /// <inheritdoc />
@@ -39,11 +39,14 @@ namespace Framework.Infrastructure.ApiAccessor
             using (_logger.BeginRequest(parameter))
             {
                 var client = await CreateHttpClientAsync(parameter);
+
                 var request = await CreateRequestMessageAsync(parameter);
+
                 var response = await client.SendAsync(request);
+
                 _logger.LogResponse(Configuration.Name, response);
-                var result = await CreateResponseAsync(parameter, response);
-                return result;
+
+                return await CreateResponseAsync(parameter, response);
             }
         }
 
@@ -57,6 +60,7 @@ namespace Framework.Infrastructure.ApiAccessor
         protected virtual Task<HttpClient> CreateHttpClientAsync<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter) where TResult : class
         {
             _logger.LogTrace("获取默认的单例共享 HttpClient 对象");
+
             return Task.FromResult(HttpClient);
         }
 
@@ -71,10 +75,14 @@ namespace Framework.Infrastructure.ApiAccessor
         protected virtual async Task<HttpRequestMessage> CreateRequestMessageAsync<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter) where TResult : class
         {
             _logger.LogTrace("创建默认的请求消息参数上下文 HttpRequestMessage 对象");
+
             var method = parameter.Method;
+
             var uri = GenerateRequestUri(parameter, method);
+
             var result =
                 new HttpRequestMessage(method, uri) { Content = await CreateHttpContentAsync(parameter, method, uri) };
+
             return result;
         }
 
@@ -89,6 +97,7 @@ namespace Framework.Infrastructure.ApiAccessor
         protected virtual Uri GenerateRequestUri<TParameter, TResult>(ApiParameter<TParameter, TResult> parameter, HttpMethod method) where TResult : class
         {
             _logger.LogTrace("获取默认请求参数的Uri");
+
             return parameter.ApiUri;
         }
 

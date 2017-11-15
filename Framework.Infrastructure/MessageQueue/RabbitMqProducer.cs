@@ -25,7 +25,7 @@ namespace Framework.Infrastructure.MessageQueue
         /// <inheritdoc />
         public RabbitMqProducer(IOptions<RabbitMqOptions> options)
         {
-            Check.NotNull(options, nameof(options));
+            Checker.NotNull(options, nameof(options));
             _encoding = options.Value?.Encoding ?? throw new ArgumentException("配置错误，编码格式不能为空", nameof(options.Value));
 
             _serializer = options.Value.Serializer ?? throw new ArgumentException("配置错误，序列化器不能为空");

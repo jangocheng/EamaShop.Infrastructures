@@ -18,8 +18,8 @@ namespace Framework.Infrastructure.MessageQueue
         /// <param name="onReceived"></param>
         public static void AddConsumerHandler<TMessage>(this IConsumer<TMessage> consumer, Action<TMessage> onReceived)
         {
-            Check.NotNull(consumer, nameof(consumer));
-            Check.NotNull(onReceived, nameof(onReceived));
+            Checker.NotNull(consumer, nameof(consumer));
+            Checker.NotNull(onReceived, nameof(onReceived));
             consumer.Received += (model, ack) =>
             {
                 onReceived(model);

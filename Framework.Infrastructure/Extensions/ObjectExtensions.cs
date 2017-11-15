@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 
 namespace Framework.Infrastructure.Extensions
 {
@@ -67,13 +68,25 @@ namespace Framework.Infrastructure.Extensions
             return target;
         }
         /// <summary>
+        /// 加密指定的字符串到MD5
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string Md5(this string source)
+        {
+            Checker.NotNull(source, nameof(source));
+            var bytes = Encoding.Default.GetBytes(source);
+            MD5 md5 = new MD5CryptoServiceProvider();
+            return BitConverter.ToString(md5.ComputeHash(bytes)).Replace("-", "");
+        }
+        /// <summary>
         /// 将json字符串反序列化为指定类型的对象，如果json为空，则返回null，如果不合法，则抛异常
         /// </summary>
         /// <param name="json"></param>
         /// <param name="modelType"></param>
         /// <returns></returns>
         public static object DeserializeJsonWithType(this string json, Type modelType) =>
-            string.IsNullOrWhiteSpace(json) ? null : JsonConvert.DeserializeObject(json, modelType, Setting);
+            string.IsNullOrWhiteSpace(json) ? null :  JsonConvert.DeserializeObject(json, modelType, Setting);
         /// <summary>
         /// 将json字符串反序列化为指定类型的对象，如果json为空，则返回null，如果不合法，则抛异常
         /// </summary>

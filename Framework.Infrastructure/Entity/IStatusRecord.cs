@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Framework.Domain.Abstractions
+namespace Framework.Infrastructure.Entity
 {
     /// <summary>
     /// 表示是具有状态的数据记录
@@ -19,6 +19,5 @@ namespace Framework.Domain.Abstractions
         /// 上次修改该数据的时间
         /// </summary>
         DateTime ModifiedTime { get; set; }
-
     }
 }

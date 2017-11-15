@@ -8,12 +8,12 @@ namespace Framework.Infrastructure.MessageQueue
     /// <summary>
     /// 事件发布者
     /// </summary>
-    public interface IPublisher
+    public interface IPublisher<in T>
     {
         /// <summary>
         /// 发布一个事件消息
         /// </summary>
         /// <returns></returns>
-        Task PublishAsync();
+        Task PublishAsync(T t);
     }
 }
