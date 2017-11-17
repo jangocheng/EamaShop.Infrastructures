@@ -17,8 +17,17 @@ namespace Framework.Infrastructure
             + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
             + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
             + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$";
+        /// <summary>
+        /// 错误信息
+        /// </summary>
         public static string ErrorMsg { get; set; } = "无效的Ip地址，请输入正确的Ip地址";
+        /// <summary>
+        /// 验证规则 默认正则
+        /// </summary>
         public static Func<string, bool> Rule { get; set; } = (i) => Regex.IsMatch(i, Pattern);
+        /// <summary>
+        /// ip地址
+        /// </summary>
         public string IpAddress { get; }
         /// <summary>
         /// 初始化一个Ip地址

@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Framework.Infrastructure.Configuration;
 using Framework.Infrastructure.Converter;
 using Framework.Infrastructure.DataPages;
 using Framework.Infrastructure.MessageQueue;
 using Framework.Infrastructure.Serialize;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Framework.Infrastructure;
 
-namespace Framework.Infrastructure
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// 基础设施服务的容器扩展

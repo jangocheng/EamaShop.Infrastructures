@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <SignAssembly>false</SignAssembly>
-    <Version>1.3.3</Version>
+    <Version>1.4.0</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageReleaseNotes>读写仓储增加SaveChanges</PackageReleaseNotes>
-    <Description>基于AspNetCore组件，为所有的微服务提供公共的抽象，包括数据访问层抽象，基于Core的IDistributed缓存扩展,消息队列，Api访问客户端（Http默认实现），分页数据结构定义，数据表实体的公共抽象，业务异常，序列化扩展，基于zookeeper的ConfigurationProvider的配置</Description>
-    <AssemblyVersion>1.3.3.0</AssemblyVersion>
-    <FileVersion>1.3.3.0</FileVersion>
+    <PackageReleaseNotes>将zookeeper独立，删除响应的依赖包，EamaBuilder.Extensions.Configuration.Zookeeper</PackageReleaseNotes>
+    <Description>基于AspNetCore组件，为所有的微服务提供公共的抽象，包括数据访问层抽象，基于Core的IDistributed缓存扩展,消息队列，Api访问客户端（Http默认实现），分页数据结构定义，数据表实体的公共抽象，业务异常，序列化扩展</Description>
+    <AssemblyVersion>1.4.0.0</AssemblyVersion>
+    <FileVersion>1.4.0.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
@@ -21,15 +21,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="AutoMapper" Version="6.2.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="RabbitMQ.Client" Version="5.0.1" />
-    <PackageReference Include="StackExchange.Redis" Version="1.2.6" />
-    <PackageReference Include="ZooKeeperNetEx.Recipes" Version="3.4.9.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,7 @@ namespace Framework.Infrastructure
     /// <summary>
     /// 验证对象
     /// </summary>
-    public static class Checker
+    internal static class Checker
     {
         /// <summary>
         /// 对象不可能为null,如果为null 抛出 <see cref="ArgumentNullException"/>
