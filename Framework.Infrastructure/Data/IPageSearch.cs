@@ -1,4 +1,4 @@
-﻿namespace Framework.Infrastructure.DataPages
+﻿namespace Framework.Infrastructure.Data
 {
     /// <summary>
     /// 定义分页搜索的必须条件

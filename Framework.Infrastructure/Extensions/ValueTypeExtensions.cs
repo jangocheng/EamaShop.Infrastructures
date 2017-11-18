@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.Infrastructure
+namespace System
 {
     /// <summary>
     /// 值类型的扩展

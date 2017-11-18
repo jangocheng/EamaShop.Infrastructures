@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.Infrastructure.Entity
+namespace Framework.Infrastructure.Data
 {
     /// <summary>
     /// 表示具有唯一值自增类型的Id

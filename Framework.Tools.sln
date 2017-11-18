@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.AspNetCore.Infrastructure", "Framework.AspNetCore.Infrastructure\Framework.AspNetCore.Infrastructure.csproj", "{0F206F67-3C68-435B-BA76-9F1FD2BC3C46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EamaBuilder.Extensions.Configuration.Zookeeper", "EamaBuilder.Extensions.Configuration.Zookeeper\EamaBuilder.Extensions.Configuration.Zookeeper.csproj", "{F60D9BF7-7D34-4852-B28C-DBC42438A4E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EamaBuilder.Extensions.Configuration.Zookeeper", "EamaBuilder.Extensions.Configuration.Zookeeper\EamaBuilder.Extensions.Configuration.Zookeeper.csproj", "{F60D9BF7-7D34-4852-B28C-DBC42438A4E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

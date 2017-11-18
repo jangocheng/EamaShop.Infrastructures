@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.Infrastructure
+    
+namespace Framework.Infrastructure.Data
 {
     /// <summary>
     /// 表示时间区间的所有条件

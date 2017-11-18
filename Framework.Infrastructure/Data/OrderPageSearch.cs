@@ -1,6 +1,5 @@
-﻿using Framework.Infrastructure.Entity;
-
-namespace Framework.Infrastructure.DataPages
+﻿
+namespace Framework.Infrastructure.Data
 {
     /// <inheritdoc cref="IOrderPageSearch" />
     public class OrderPageSearch : PageSearch, IOrderPageSearch

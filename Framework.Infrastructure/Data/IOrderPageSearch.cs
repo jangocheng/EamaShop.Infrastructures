@@ -1,4 +1,4 @@
-﻿namespace Framework.Infrastructure.DataPages
+﻿namespace Framework.Infrastructure.Data
 {
     /// <inheritdoc />
     /// <summary>

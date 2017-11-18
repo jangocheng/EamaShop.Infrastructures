@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Framework.Infrastructure.Converter;
-using Framework.Infrastructure.DataPages;
 using Framework.Infrastructure.MessageQueue;
 using Framework.Infrastructure.Serialize;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Framework.Infrastructure;
+using Framework.Infrastructure.Data;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

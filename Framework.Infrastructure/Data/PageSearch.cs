@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Framework.Infrastructure.DataPages;
 
-namespace Framework.Infrastructure.DataPages
+namespace Framework.Infrastructure.Data
 {
     /// <inheritdoc />
     /// <summary>

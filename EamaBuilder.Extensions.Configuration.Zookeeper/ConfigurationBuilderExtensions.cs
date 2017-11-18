@@ -89,6 +89,7 @@ namespace Microsoft.Extensions.Configuration
         /// 配置文件的顶级节点为 /AppConfiguration
         /// 且只能从配置中心获取配置 无法修改
         /// </summary>
+        /// <param name="builder"></param>
         /// <param name="connectionString">连接字符串</param>
         /// <returns></returns>
         public static IConfigurationBuilder AddZookeeper(this IConfigurationBuilder builder,

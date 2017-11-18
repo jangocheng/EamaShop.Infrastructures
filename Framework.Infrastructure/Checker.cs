@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Framework.Infrastructure.Exceptions;
 
 namespace Framework.Infrastructure
 {
@@ -45,28 +44,7 @@ namespace Framework.Infrastructure
         {
             NotNull<string>(obj, parameterName);
         }
-        /// <summary>
-        /// 对象不可能为null,如果为null 抛出 <see cref="BizException"/>
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <param name="document"></param>
-        public static void BizNotNull<T>(T obj, string document) where T : class
-        {
-            if (obj == null)
-            {
-                BizShortCircuit(document, 1);
-            }
-        }
-        /// <summary>
-        /// 使用指定的错误信息和错误代码抛出 <see cref="BizException"/> 异常
-        /// </summary>
-        /// <param name="document"></param>
-        public static void BizShortCircuit(string document, int code)
-        {
-            NotNull(document, nameof(document));
-            throw new BizException(document, code);
-        }
+       
 
     }
 }

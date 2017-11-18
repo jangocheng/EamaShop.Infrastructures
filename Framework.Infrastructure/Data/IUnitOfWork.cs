@@ -1,9 +1,8 @@
-﻿using Framework.Infrastructure.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.Infrastructure
+namespace Framework.Infrastructure.Data
 {
     /// <inheritdoc />
     /// <summary>

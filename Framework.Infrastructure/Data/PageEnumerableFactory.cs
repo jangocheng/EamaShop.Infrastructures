@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.Infrastructure.DataPages
+namespace Framework.Infrastructure.Data
 {
     /// <inheritdoc />
     public class PageEnumerableFactory : IPageEnumerableFactory

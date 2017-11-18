@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Framework.Infrastructure.Extensions;
 
 namespace Framework.Infrastructure.ApiAccessor
 {

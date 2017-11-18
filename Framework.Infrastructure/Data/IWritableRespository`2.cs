@@ -1,22 +1,21 @@
-﻿using Framework.Infrastructure.DataPages;
-using Framework.Infrastructure.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Framework.Infrastructure
+namespace Framework.Infrastructure.Data
 {
     /// <summary>
     /// 表示可读可写的仓储
     /// </summary>
-    public interface IWritableRespository<TEntity, TListModel, TEnumerable, TCondtion, TPrimaryKey> 
-        : IRespository<TEntity, TListModel, TEnumerable, TCondtion, TPrimaryKey>
+    public interface IWritableRespository<TEntity, TPrimaryKey> 
+        : IRespository<TEntity,  TPrimaryKey>
         where TEntity : IEntity<TPrimaryKey>, IStatusRecord
-        where TListModel : class
-        where TEnumerable : IEnumerable<TListModel>
-        where TCondtion : class, IPageSearch, IOrderPageSearch
     {
+        /// <summary>
+        /// 获取仓储的工作单元
+        /// </summary>
+        IUnitOfWork UnitOfWork { get; }
         /// <summary>
         /// 更新指定的实体
         /// </summary>
@@ -29,16 +28,10 @@ namespace Framework.Infrastructure
         /// <param name="entity"></param>
         /// <returns></returns>
         Task RemoveAsync(TEntity entity);
-
         /// <summary>
         /// 新增一条数据
         /// </summary>
         /// <returns></returns>
         Task<TEntity> AddAsync(TEntity entity);
-        /// <summary>
-        /// 保存所做的所有修改
-        /// </summary>
-        /// <returns></returns>
-        Task SaveChangesAsync();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Framework.Infrastructure.Entity
+namespace Framework.Infrastructure.Data
 {
     /// <summary>
     /// 表示是具有状态的数据记录

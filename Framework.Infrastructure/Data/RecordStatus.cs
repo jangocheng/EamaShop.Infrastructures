@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Framework.Infrastructure.Entity
+namespace Framework.Infrastructure.Data
 {
     /// <summary>
     /// 表示数据记录的状态

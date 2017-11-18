@@ -114,7 +114,12 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
             }
             return string.Join(":", array);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static ZookeeperPathString operator +(string a, ZookeeperPathString b)
         {
             if (a == null) return b ?? null;
@@ -126,6 +131,12 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
 
             return $"/{a}{b}";
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static ZookeeperPathString operator +(ZookeeperPathString a, ZookeeperPathString b)
         {
             return a.Path + b.Path;
