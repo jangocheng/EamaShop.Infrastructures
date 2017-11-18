@@ -6,18 +6,32 @@ using System.Threading.Tasks;
 namespace Framework.Infrastructure.Data
 {
     /// <summary>
-    /// 表示一个只读的仓储
+    /// 表示可读可写的仓储
     /// </summary>
-    /// <typeparam name="TEntity">仓储里的数据实体</typeparam>
-    /// <typeparam name="TPrimaryKey">仓储里的数据实体的主键类型</typeparam>
-    public interface IRespository<TEntity, TPrimaryKey>
+    public interface IWritableRespository<TEntity, TPrimaryKey> 
+        : IReadOnlyRespository<TEntity,  TPrimaryKey>
         where TEntity : IEntity<TPrimaryKey>, IStatusRecord
     {
         /// <summary>
-        /// 获取指定id的数据
+        /// 获取仓储的工作单元
         /// </summary>
-        /// <param name="primaryKey"></param>
+        IUnitOfWork UnitOfWork { get; }
+        /// <summary>
+        /// 更新指定的实体
+        /// </summary>
+        /// <param name="entity"></param>
         /// <returns></returns>
-        Task<TEntity> GetAsync(TPrimaryKey primaryKey);
+        Task UpdateAsync(TEntity entity);
+        /// <summary>
+        /// 删除指定的数据
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task RemoveAsync(TEntity entity);
+        /// <summary>
+        /// 新增一条数据
+        /// </summary>
+        /// <returns></returns>
+        Task<TEntity> AddAsync(TEntity entity);
     }
 }
