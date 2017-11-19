@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <Description>AspNetCore Configuration组件基于zookeeper实现的分布式配置中心,提供了zookeeper函数的C#命名规范包装扩展方法集合</Description>
-    <PackageReleaseNotes>无</PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <PackageReleaseNotes>注释</PackageReleaseNotes>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <SignAssembly>false</SignAssembly>
-    <Version>1.4.0</Version>
+    <Version>1.6.0</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageReleaseNotes>将zookeeper独立，删除响应的依赖包，EamaBuilder.Extensions.Configuration.Zookeeper</PackageReleaseNotes>
+    <PackageReleaseNotes>重命名+增加扩展</PackageReleaseNotes>
     <Description>基于AspNetCore组件，为所有的微服务提供公共的抽象，包括数据访问层抽象，基于Core的IDistributed缓存扩展,消息队列，Api访问客户端（Http默认实现），分页数据结构定义，数据表实体的公共抽象，序列化扩展</Description>
     <AssemblyVersion>1.5.0.0</AssemblyVersion>
     <FileVersion>1.5.0.0</FileVersion>

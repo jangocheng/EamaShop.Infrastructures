@@ -11,7 +11,7 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
     /// zookeeper 配置中心监听者
     /// </summary>
     /// <inheritdoc cref="IChangeToken" />
-    internal sealed class ZkConfigWatcher : Watcher
+    public sealed class ZkConfigWatcher : Watcher
     {
         /// <summary>
         /// 配置发送改变时的信号
@@ -22,7 +22,9 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
         {
             return OnChangedAsync(@event);
         }
-
+        /// <summary>
+        /// 当配置发生改变时触发该事件
+        /// </summary>
         public event Func<WatchedEvent, Task> OnChangedAsync;
     }
 }

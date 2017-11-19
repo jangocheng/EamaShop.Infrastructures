@@ -8,14 +8,10 @@ namespace Framework.Infrastructure.Data
     /// <summary>
     /// 表示可读可写的仓储
     /// </summary>
-    public interface IWritableRespository<TEntity, TPrimaryKey> 
+    public interface IRespository<TEntity, TPrimaryKey> 
         : IReadOnlyRespository<TEntity,  TPrimaryKey>
         where TEntity : IEntity<TPrimaryKey>, IStatusRecord
     {
-        /// <summary>
-        /// 获取仓储的工作单元
-        /// </summary>
-        IUnitOfWork UnitOfWork { get; }
         /// <summary>
         /// 更新指定的实体
         /// </summary>
@@ -33,5 +29,10 @@ namespace Framework.Infrastructure.Data
         /// </summary>
         /// <returns></returns>
         Task<TEntity> AddAsync(TEntity entity);
+        /// <summary>
+        /// 保存在此仓储的所有更改
+        /// </summary>
+        /// <returns></returns>
+        Task<int> SaveChangesAsync();
     }
 }
