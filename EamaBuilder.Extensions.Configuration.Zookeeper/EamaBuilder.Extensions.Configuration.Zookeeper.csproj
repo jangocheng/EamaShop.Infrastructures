@@ -4,11 +4,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <Description>AspNetCore Configuration组件基于zookeeper实现的分布式配置中心,提供了zookeeper函数的C#命名规范包装扩展方法集合</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp2.0\EamaBuilder.Extensions.Configuration.Zookeeper.xml</DocumentationFile>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

@@ -35,7 +35,8 @@ namespace Microsoft.Extensions.Configuration
                 ConnectionString = connectionString,
                 DataEncoding = encoding,
                 SessionTimeout = sessionTimeout,
-                Path = path
+                Path = path,
+                ReadOnlyConfiguration = readOnly
             };
             return builder.Add(source);
         }
@@ -63,7 +64,8 @@ namespace Microsoft.Extensions.Configuration
                 ConnectionString = connectionString,
                 DataEncoding = Encoding.GetEncoding(encoding),
                 SessionTimeout = sessionTimeout,
-                Path = path
+                Path = path,
+                ReadOnlyConfiguration = readOnly
             };
             return builder.Add(source);
         }

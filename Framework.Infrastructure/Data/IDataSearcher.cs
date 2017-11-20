@@ -11,7 +11,7 @@ namespace Framework.Infrastructure.Data
     /// <typeparam name="TData"></typeparam>
     /// <typeparam name="TConditions"></typeparam>
     public interface IDataSearcher<TData, TConditions>
-        where TData : class
+        where TData : class, ISearchableMetadata
         where TConditions : IPageSearch, IOrderPageSearch
     {
         /// <summary>
