@@ -16,7 +16,7 @@ namespace Framework.Tools
 
             if (config.GetConnectionString("sss") == null)
             {
-                var section = config.GetSection("ConnectionStrings").GetSection("Order");
+                var section = config.GetSection("ConnectionStrings");//.GetSection("Order");
                 section.Value = "aaa";
             }
             config.GetSection("ss");

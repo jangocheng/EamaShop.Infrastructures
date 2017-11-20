@@ -15,10 +15,15 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
     {
         public override void Set(string key, string value)
         {
+            if (Source.ReadOnlyConfiguration)
+            {
+                return;
+            }
             // set zookeeper
             var path = ZookeeperPathString.ParseFrom(key);
             if (!path.Path.StartsWith(Source.Path)) path = Source.Path + path;
 
+            //ZooKeeper.Using(Source.ConnectionString, Source.SessionTimeout, null, LoadAsync);
             _client.SetDataAsync(path, Source.DataEncoding.GetBytes(value))
                 .ConfigureAwait(false)
                 .GetAwaiter()
@@ -65,7 +70,6 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
         private async Task LoadAsync(ZooKeeper keeper)
         {
             await keeper.GetOrAddAsync(Source.Path, new byte[0]);
-
             await Loop(keeper, Source.Path);
         }
         private async Task Loop(ZooKeeper keeper, ZookeeperPathString path)
@@ -81,7 +85,7 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
                 var childs = await keeper.getChildrenAsync(path, true);
                 foreach (var c in childs.Children)
                 {
-                    await Loop(keeper, c);
+                    await Loop(keeper, path + c);
                 }
             }
         }
@@ -114,7 +118,6 @@ namespace Microsoft.Extensions.Configuration.Zookeeper
                 default:
                     break;
             }
-
         }
     }
 }

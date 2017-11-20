@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Framework.Infrastructure.DataPages;
 using Framework.Infrastructure.Serialize;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
+using Framework.Infrastructure.Data;
 
 namespace Framework.Tools
 {

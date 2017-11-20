@@ -27,16 +27,19 @@ namespace org.apache.zookeeper
             if (path == null) throw new ArgumentNullException(nameof(path));
 
             if (data == null) throw new ArgumentNullException(nameof(data));
-
-            var spliter = path.ToSpliter();
-
-            foreach (var spl in spliter)
+            if (!await keeper.ExistAsync(path))
             {
-                if (!await keeper.ExistAsync(spl))
-                {
-                    await keeper.createAsync(path, data, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-                }
+                await keeper.createAsync(path, data, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
             }
+            //var spliter = path.ToSpliter();
+
+            //foreach (var spl in spliter)
+            //{
+            //    if (!await keeper.ExistAsync(spl))
+            //    {
+            //        await keeper.createAsync(path, data, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+            //    }
+            //}
         }
         /// <summary>
         /// 是否存在指定的节点

@@ -30,11 +30,13 @@ namespace Microsoft.Extensions.Configuration
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-            var source = new ZookeeperConfigurationSource();
-            source.ConnectionString = connectionString;
-            source.DataEncoding = encoding;
-            source.SessionTimeout = sessionTimeout;
-            source.Path = path;
+            var source = new ZookeeperConfigurationSource
+            {
+                ConnectionString = connectionString,
+                DataEncoding = encoding,
+                SessionTimeout = sessionTimeout,
+                Path = path
+            };
             return builder.Add(source);
         }
         /// <summary>
@@ -45,57 +47,25 @@ namespace Microsoft.Extensions.Configuration
         /// <param name="path">配置中心的配置节点，该节点下的所有子节点会被递归作为配置</param>
         /// <param name="sessionTimeout">session的过期时间</param>
         /// <param name="encoding">数据的编码格式</param>
+        /// <param name="readOnly">是否是只读的，对于管理配置的，设置为false，对于使用配置的应用，则为true</param>
         /// <returns></returns>
         public static IConfigurationBuilder AddZookeeper(this IConfigurationBuilder builder,
             string connectionString,
-            ZookeeperPathString path,
-            Encoding encoding,
-            int sessionTimeout)
+            string path = "/ZkAppConfigs",
+            string encoding = "utf-8",
+            int sessionTimeout = 50000,
+            bool readOnly = true)
         {
-            return builder.AddZookeeper(connectionString, path, encoding, sessionTimeout, true);
-        }
-        /// <summary>
-        /// 添加Zookeeper的配置中心 使用 <see cref="UTF8Encoding"/> 进行数据编码
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="connectionString">连接字符串</param>
-        /// <param name="path">配置中心的配置节点，该节点下的所有子节点会被递归作为配置</param>
-        /// <param name="sessionTimeout">session的过期时间</param>
-        /// <returns></returns>
-        public static IConfigurationBuilder AddZookeeper(this IConfigurationBuilder builder,
-            string connectionString,
-            ZookeeperPathString path,
-            int sessionTimeout)
-        {
-            return builder.AddZookeeper(connectionString, path, Encoding.UTF8, sessionTimeout);
-        }
-        /// <summary>
-        /// 添加Zookeeper的配置中心 使用 <see cref="UTF8Encoding"/> 进行数据编码 session的失效为默认 60000毫秒
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="connectionString">连接字符串</param>
-        /// <param name="path">配置中心的配置节点，该节点下的所有子节点会被递归作为配置</param>
-        /// <returns></returns>
-        public static IConfigurationBuilder AddZookeeper(this IConfigurationBuilder builder,
-            string connectionString,
-            ZookeeperPathString path
-            )
-        {
-            return builder.AddZookeeper(connectionString, path, 60000);
-        }
-        /// <summary>
-        /// 添加Zookeeper的配置中心 使用 <see cref="UTF8Encoding"/> 进行数据编码 
-        /// session的失效为默认 60000毫秒
-        /// 配置文件的顶级节点为 /AppConfiguration
-        /// 且只能从配置中心获取配置 无法修改
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="connectionString">连接字符串</param>
-        /// <returns></returns>
-        public static IConfigurationBuilder AddZookeeper(this IConfigurationBuilder builder,
-            string connectionString)
-        {
-            return builder.AddZookeeper(connectionString, "/AppConfiguration");
+            if (builder == null) throw new ArgumentNullException(nameof(builder));
+
+            var source = new ZookeeperConfigurationSource
+            {
+                ConnectionString = connectionString,
+                DataEncoding = Encoding.GetEncoding(encoding),
+                SessionTimeout = sessionTimeout,
+                Path = path
+            };
+            return builder.Add(source);
         }
     }
 }
