@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.AspNetCore.Infras
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EamaBuilder.Extensions.Configuration.Zookeeper", "EamaBuilder.Extensions.Configuration.Zookeeper\EamaBuilder.Extensions.Configuration.Zookeeper.csproj", "{F60D9BF7-7D34-4852-B28C-DBC42438A4E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EamaBuilder.Extensions.Primitives.Rabbit", "EamaBuilder.Extensions.Primitives.Rabbit\EamaBuilder.Extensions.Primitives.Rabbit.csproj", "{31B8D866-9D98-4BEB-86F2-CDC2147BA748}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F60D9BF7-7D34-4852-B28C-DBC42438A4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F60D9BF7-7D34-4852-B28C-DBC42438A4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F60D9BF7-7D34-4852-B28C-DBC42438A4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B8D866-9D98-4BEB-86F2-CDC2147BA748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B8D866-9D98-4BEB-86F2-CDC2147BA748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B8D866-9D98-4BEB-86F2-CDC2147BA748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B8D866-9D98-4BEB-86F2-CDC2147BA748}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

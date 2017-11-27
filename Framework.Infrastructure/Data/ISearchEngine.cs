@@ -10,7 +10,7 @@ namespace Framework.Infrastructure.Data
     /// </summary>
     /// <typeparam name="TData"></typeparam>
     /// <typeparam name="TConditions"></typeparam>
-    public interface IDataSearcher<TData, TConditions>
+    public interface ISearchEngine<TData, TConditions>
         where TData : class, ISearchableMetadata
         where TConditions : IPageSearch, IOrderPageSearch
     {

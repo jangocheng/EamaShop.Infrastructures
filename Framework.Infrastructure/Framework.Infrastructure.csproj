@@ -3,13 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <SignAssembly>false</SignAssembly>
-    <Version>1.6.1</Version>
+    <Version>1.6.3</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageReleaseNotes>重命名+增加扩展</PackageReleaseNotes>
-    <Description>基于AspNetCore组件，为所有的微服务提供公共的抽象，包括数据访问层抽象，基于Core的IDistributed缓存扩展,消息队列，Api访问客户端（Http默认实现），分页数据结构定义，数据表实体的公共抽象，序列化扩展</Description>
-    <AssemblyVersion>1.5.0.0</AssemblyVersion>
-    <FileVersion>1.5.0.0</FileVersion>
+    <Description>数据仓储，AspNetCore抽象，配置中心转移到 EamaBuilder.Extensions.Configuration.Zookeeper.
+          消息队列转移到 EamaBuilder.Extensions.Primitve</Description>
+    <AssemblyVersion>1.6.3.0</AssemblyVersion>
+    <FileVersion>1.6.3.0</FileVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/sd00887/Framework.Tools</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,7 +23,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
