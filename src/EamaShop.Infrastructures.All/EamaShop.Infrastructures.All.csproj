@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\EamaBuilder.Extensions.Lock.Redis\EamaBuilder.Extensions.Lock.Redis.csproj" />
+    <ProjectReference Include="..\EamaShop.Infrastructures.BLLModels\EamaShop.Infrastructures.BLLModels.csproj" />
     <ProjectReference Include="..\EamaShop.Infrastructures.EventBus\EamaShop.Infrastructures.EventBus.csproj" />
   </ItemGroup>
 

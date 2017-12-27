@@ -180,6 +180,7 @@ namespace Microsoft.Extensions.DependencyInjection
             options.CacheProfiles.Add("default", cacheProfile);
 
             options.Filters.Add<GlobalExceptionFilter>();
+            options.Filters.Add<DomainExceptionFilter>();
         }
 
         private static void Configure(JsonSerializerSettings settings)
