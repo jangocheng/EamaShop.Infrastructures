@@ -1,4 +1,6 @@
-﻿using EamaShop.Infrastructures;
+﻿using EamaBuilder.Extensions.Lock.Abstractions;
+using EamaBuilder.Extensions.Lock.Redis;
+using EamaShop.Infrastructures;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -178,7 +180,6 @@ namespace Microsoft.Extensions.DependencyInjection
             options.CacheProfiles.Add("default", cacheProfile);
 
             options.Filters.Add<GlobalExceptionFilter>();
-            options.Filters.Add<DomainExceptionFilter>();
         }
 
         private static void Configure(JsonSerializerSettings settings)

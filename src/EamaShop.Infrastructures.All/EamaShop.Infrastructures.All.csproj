@@ -5,14 +5,22 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netcoreapp2.0\EamaShop.Infrastructures.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\EamaShop.Infrastructures.All.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netcoreapp2.0\EamaShop.Infrastructures.All.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\EamaBuilder.Extensions.Lock.Redis\EamaBuilder.Extensions.Lock.Redis.csproj" />
+    <ProjectReference Include="..\EamaShop.Infrastructures.EventBus\EamaShop.Infrastructures.EventBus.csproj" />
   </ItemGroup>
 
 </Project>
