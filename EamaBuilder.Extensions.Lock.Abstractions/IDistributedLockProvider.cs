@@ -17,6 +17,12 @@ namespace EamaBuilder.Extensions.Lock.Abstractions
         /// <param name="name"></param>
         /// <returns></returns>
         IDistributedLock GetLock(string name);
+        /// <summary>
+        /// 异步创建或获取锁
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<IDistributedLock> GetLockAsync(string name, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

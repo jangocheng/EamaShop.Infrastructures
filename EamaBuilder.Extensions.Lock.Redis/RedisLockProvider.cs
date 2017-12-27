@@ -9,12 +9,20 @@ using System.Threading.Tasks;
 
 namespace EamaBuilder.Extensions.Lock.Redis
 {
+    /// <summary>
+    /// This class support for EamaBuilder Infrastructures.
+    /// Do not use it in your application code directly.
+    /// </summary>
     public class RedisLockProvider : IDistributedLockProvider
     {
         private readonly RedisLockOptions _options;
         private readonly SemaphoreSlim _waitLock;
         private volatile ConnectionMultiplexer _connection;
         private IDatabase _database;
+        /// <summary>
+        /// init
+        /// </summary>
+        /// <param name="options"></param>
         public RedisLockProvider(IOptions<RedisLockOptions> options)
         {
             if (options == null)
@@ -24,6 +32,7 @@ namespace EamaBuilder.Extensions.Lock.Redis
             _options = options.Value;
             _waitLock = new SemaphoreSlim(1, 1);
         }
+        ///<inheritdoc />
         public IDistributedLock GetLock(string name)
         {
             Connect();
@@ -31,6 +40,7 @@ namespace EamaBuilder.Extensions.Lock.Redis
         }
 
 
+        ///<inheritdoc />
         public async Task<IDistributedLock> GetLockAsync(string name, CancellationToken cancellationToken = default(CancellationToken))
         {
             cancellationToken.ThrowIfCancellationRequested();
