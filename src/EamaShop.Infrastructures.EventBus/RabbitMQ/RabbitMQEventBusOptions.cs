@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EamaShop.Infrastructures
 {
+    /// <summary>
+    /// Configuration of RabbitMQ.
+    /// </summary>
     public class RabbitMQEventBusOptions
     {
         /// <summary>

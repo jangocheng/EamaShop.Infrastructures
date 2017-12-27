@@ -7,6 +7,8 @@ namespace EamaShop.Infrastructures
 {
     /// <summary>
     /// Represent a persistent connction for RabbitMQ.
+    /// <para></para>
+    /// Do not use this interface directly in your application code.
     /// </summary>
     public interface IRabbitMQPersistentConnection : IDisposable
     {

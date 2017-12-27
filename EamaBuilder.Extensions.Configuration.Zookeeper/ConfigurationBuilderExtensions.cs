@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration.Zookeeper;
 namespace Microsoft.Extensions.Configuration
 {
     /// <summary>
-    /// 配置中心
+    /// Provides extension methods for <see cref="ConfigurationBuilder"/>
     /// </summary>
     public static class ConfigurationBuilderExtensions
     {
