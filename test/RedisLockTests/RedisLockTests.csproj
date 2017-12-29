@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\EamaBuilder.Extensions.Lock.Redis\EamaBuilder.Extensions.Lock.Redis.csproj" />
+    <ProjectReference Include="..\..\src\EamaShop.Infrastructures.BLLModels\EamaShop.Infrastructures.BLLModels.csproj" />
   </ItemGroup>
 
 </Project>

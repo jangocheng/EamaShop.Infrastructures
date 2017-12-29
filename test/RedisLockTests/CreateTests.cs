@@ -21,7 +21,7 @@ namespace RedisLockTests
 
             for (int index = 0; index < 5; index++)
             {
-                var flag = defaultLock.Enter(TimeSpan.FromSeconds(5));
+                var flag = defaultLock.Enter(TimeSpan.FromSeconds(10));
                 if (flag)
                 {
                     Debug.Print("成功获取到分布式锁");
@@ -29,10 +29,9 @@ namespace RedisLockTests
                 else
                 {
                     Debug.Print("未能获取到分布式锁，该锁已经被占用");
-                    if (index == 1)
-                    {
-                        Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(5)));
-                    }
+
+                    Task.WaitAll(Task.Delay(TimeSpan.FromSeconds(10)));
+
                     Assert.True(defaultLock.Enter(TimeSpan.FromSeconds(5)));
                     defaultLock.Exit();
                 }

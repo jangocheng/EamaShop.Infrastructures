@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace System.Extensions
@@ -12,6 +13,8 @@ namespace System.Extensions
     [DebuggerStepThrough]
     public static class ClrExtensions
     {
+        private static MD5 Md5Encryptor { get; } = MD5.Create();
+        private static string Md5CharDelimited => "-";
         /// <summary>
         /// transform this source string as aes source string
         /// </summary>
@@ -39,5 +42,14 @@ namespace System.Extensions
         {
             return Uri.IsWellFormedUriString(source, UriKind.Absolute);
         }
+        /// <summary>
+        /// Encrypt given source string to a 32-bit md5 string.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string Md5(this string source)
+        => source == null
+            ? throw new ArgumentNullException(nameof(source))
+            : BitConverter.ToString(Md5Encryptor.ComputeHash(Encoding.UTF8.GetBytes(source))).Replace(Md5CharDelimited, string.Empty);
     }
 }
