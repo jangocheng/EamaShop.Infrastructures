@@ -118,7 +118,7 @@ namespace EamaShop.Infrastructures
         /// <summary>
         /// 隐式转换
         /// </summary>
-        /// <param name="secret"></param>
+        /// <param name="source"></param>
         public static implicit operator string(AesSecretString source)
         {
             return source.Secret;

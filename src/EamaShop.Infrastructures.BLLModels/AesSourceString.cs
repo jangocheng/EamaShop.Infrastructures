@@ -12,6 +12,10 @@ namespace EamaShop.Infrastructures
     [DebuggerStepThrough]
     public struct AesSourceString : IEquatable<AesSourceString>
     {
+        /// <summary>
+        /// Initialize a new aes source string by given surce string value.
+        /// </summary>
+        /// <param name="sourceString"></param>
         public AesSourceString(string sourceString) : this()
         {
             SourceString = sourceString ?? throw new ArgumentNullException(nameof(sourceString));
