@@ -1,6 +1,8 @@
-﻿using System;
+﻿using EamaShop.Infrastructures.BLLModels;
+using System;
 using System.Collections.Generic;
 using System.Extensions;
+using System.Security.Claims;
 using System.Text;
 using Xunit;
 
@@ -15,6 +17,15 @@ namespace RedisLockTests
 
             var result = source.Md5();
 
+            var identitys = new[]
+            {
+                new ClaimsIdentity(new []{
+                    new Claim(ClaimTypes.Name,"name",ClaimValueTypes.String)
+                },"jwt")
+            };
+
+            var fakerclaim = new ClaimsPrincipal(identitys);
+            var name = fakerclaim.FindFirstValue<string>(ClaimTypes.Name);
         }
     }
 }

@@ -37,9 +37,10 @@ namespace EamaShop.Infrastructures.BLLModels
             }
 
             var claim = principal.FindFirst(x => x.Type == claimType);
-
-            return claim.Value.TryJsonToObject<T>();
+            
+            return (T)Convert.ChangeType(claim.Value, typeof(T));
         }
+
         /// <summary>
         /// Find first value from identity.
         /// </summary>
@@ -47,7 +48,7 @@ namespace EamaShop.Infrastructures.BLLModels
         /// <param name="identity"></param>
         /// <param name="claimType"></param>
         /// <returns></returns>
-        public static T FindFirstValue<T>(this ClaimsIdentity identity,string claimType)
+        public static T FindFirstValue<T>(this ClaimsIdentity identity, string claimType)
         {
             if (identity == null)
             {
@@ -64,10 +65,9 @@ namespace EamaShop.Infrastructures.BLLModels
             }
 
             var claim = identity.FindFirst(x => x.Type == claimType);
-
-            return claim.Value.TryJsonToObject<T>();
+            return (T)Convert.ChangeType(claim.Value, typeof(T));
         }
 
-        
+
     }
 }
