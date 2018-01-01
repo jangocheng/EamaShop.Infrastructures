@@ -26,6 +26,8 @@ namespace RedisLockTests
 
             var fakerclaim = new ClaimsPrincipal(identitys);
             var name = fakerclaim.FindFirstValue<long>(ClaimTypes.Name);
+
+            EamaUser user = new EamaUser(1, "wu15155482256", new[] { "User" });
         }
     }
 }

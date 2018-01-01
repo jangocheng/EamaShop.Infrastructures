@@ -80,10 +80,10 @@ namespace EamaShop.Infrastructures.BLLModels
                 var claims = new[]
                 {
                     NewClaim(nameof(Id),id),
-                    NewClaim(nameof(AccountName),AccountName),
-                    NewClaim(nameof(IsFemale),IsFemale),
-                    NewClaim(nameof(LoginTime),LoginTime),
-                    NewClaim(nameof(Roles),String.Join(";",Roles)),
+                    NewClaim(nameof(AccountName),accountName),
+                    NewClaim(nameof(IsFemale),isFemale),
+                    NewClaim(nameof(LoginTime),loginTime),
+                    NewClaim(nameof(Roles),String.Join(";",roles)),
                     NewClaim(ClaimsIdentity.DefaultRoleClaimType,role)
                 };
 
