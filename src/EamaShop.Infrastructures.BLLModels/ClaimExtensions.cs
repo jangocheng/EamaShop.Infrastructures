@@ -13,6 +13,20 @@ namespace EamaShop.Infrastructures.BLLModels
     public static class ClaimExtensions
     {
         /// <summary>
+        /// Gets typed <see cref="EamaUser"/> from <see cref="ClaimsPrincipal"/>
+        /// </summary>
+        /// <param name="principal"></param>
+        /// <returns></returns>
+        public static EamaUser GetTypedUser(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException(nameof(principal));
+            }
+
+            return new EamaUser(principal);
+        }
+        /// <summary>
         /// Find first value name in current claims principal
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -37,7 +51,7 @@ namespace EamaShop.Infrastructures.BLLModels
             }
 
             var claim = principal.FindFirst(x => x.Type == claimType);
-            
+
             return (T)Convert.ChangeType(claim.Value, typeof(T));
         }
 
