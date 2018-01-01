@@ -20,12 +20,12 @@ namespace RedisLockTests
             var identitys = new[]
             {
                 new ClaimsIdentity(new []{
-                    new Claim(ClaimTypes.Name,"name",ClaimValueTypes.String)
+                    new Claim(ClaimTypes.Name,"1",ClaimValueTypes.String)
                 },"jwt")
             };
 
             var fakerclaim = new ClaimsPrincipal(identitys);
-            var name = fakerclaim.FindFirstValue<string>(ClaimTypes.Name);
+            var name = fakerclaim.FindFirstValue<long>(ClaimTypes.Name);
         }
     }
 }

@@ -10,6 +10,10 @@
     <DocumentationFile>bin\Release\netcoreapp2.0\EamaShop.Infrastructures.BLLModels.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\EamaShop.Infrastructures.BLLModels.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>

@@ -24,6 +24,9 @@ namespace Microsoft.AspNetCore.Mvc
         /// </summary>
         public TDTO Data { get; }
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public class ResultDTO
     {
         /// <summary>
@@ -31,12 +34,18 @@ namespace Microsoft.AspNetCore.Mvc
         /// </summary>
         public string Message { get; }
         /// <summary>
+        /// Gets normalized message.
+        /// </summary>
+        public string NormalizeMessage { get; }
+        /// <summary>
         /// Initialize a new <see cref="ResultDTO"/> instance.
         /// </summary>
         /// <param name="message"></param>
-        protected ResultDTO(string message = "SUCCESS")
+        /// <param name="normalizeMessage"></param>
+        protected ResultDTO(string message = "SUCCESS", string normalizeMessage = "操作成功")
         {
             Message = message;
+            NormalizeMessage = normalizeMessage;
         }
         /// <summary>
         /// New a result dto by given message.
@@ -46,6 +55,16 @@ namespace Microsoft.AspNetCore.Mvc
         public static ResultDTO New(string message)
         {
             return new ResultDTO(message);
+        }
+        /// <summary>
+        /// New a result dto by given normalized message and message.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="normalizeMessage"></param>
+        /// <returns></returns>
+        public static ResultDTO New(string message, string normalizeMessage)
+        {
+            return new ResultDTO(message, normalizeMessage);
         }
         /// <summary>
         /// New a result dto by using default 'SUCCESS' message.
