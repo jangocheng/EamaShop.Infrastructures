@@ -9,6 +9,7 @@ namespace EamaShop.Infrastructures.BLLModels
 {
     /// <summary>
     /// Provides a typed user for accessing <see cref="ClaimsPrincipal"/>.
+    /// 可靠字段：即每个用户被分配后无法更改的字段。
     /// </summary>
     public class EamaUser
     {
@@ -99,30 +100,42 @@ namespace EamaShop.Infrastructures.BLLModels
             return new Claim(fieldName, value.ToString(), typeof(T).Name, ClaimsIdentity.DefaultIssuer);
         }
         /// <summary>
-        /// 获取用户的唯一身份标识
+        /// 获取用户的唯一身份标识 对应了 claims的 Id字段值，该字段为可靠字段
         /// </summary>
         [Required]
         [Range(1, long.MaxValue)]
         public long Id => _principal.FindFirstValue<long>(nameof(Id));
         /// <summary>
-        /// 获取用户注册时的用户名
+        /// 获取用户注册时的用户名 ，该字段为可靠字段
         /// </summary>
         [Required]
         public string AccountName => _principal.FindFirstValue<string>(nameof(AccountName));
         /// <summary>
-        /// 获取用户的身份角色
+        /// 获取用户的身份角色 
         /// </summary>
+        /// <remarks>
+        /// 对应了<see cref="ClaimsPrincipal"/>中claimType 为 Roles 的字段，
+        /// claimType=‘Roles’的字段值为 由 ';' 连接的字符串.
+        /// 该字段可能不可靠，应该业务上告知用户要重新登陆
+        /// </remarks>
         [Required]
         [MinLength(1)]
-        public string[] Roles => _principal.FindFirstValue<string>(nameof(Roles)).Split(';');
+        public string[] Roles => _principal.FindFirstValue<string>(nameof(Roles))?.Split(';')
+            ?? new string[0];
         /// <summary>
-        /// 用户性别是否是女性 <see langword="true"/> 为女 <see langword="false"/> 为男
+        /// 用户性别是否是女性 <see langword="true"/> 为女 <see langword="false"/> 为男。
         /// </summary>
+        /// <remarks>
+        /// 该字段可能不可靠
+        /// </remarks>
         [DefaultValue(true)]
         public bool IsFemale => _principal.FindFirstValue<bool>(nameof(IsFemale));
         /// <summary>
         /// 获取当前用户登陆的时间
         /// </summary>
+        /// <remarks>
+        /// 可靠字段
+        /// </remarks>
         public DateTime LoginTime => _principal.FindFirstValue<DateTime>(nameof(LoginTime));
         /// <summary>
         /// Transform current instance to <see cref="ClaimsPrincipal"/>

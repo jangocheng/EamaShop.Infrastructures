@@ -14,7 +14,6 @@ namespace System.Extensions
     [DebuggerStepThrough]
     public static class ClrExtensions
     {
-
         private static MD5 Md5Encryptor { get; } = MD5.Create();
         private static string Md5CharDelimited => "-";
         /// <summary>
@@ -69,8 +68,5 @@ namespace System.Extensions
         /// <returns></returns>
         public static T TryJsonToObject<T>(this string json)
         => json == null ? default(T) : JsonConvert.DeserializeObject<T>(json);
-
-
-
     }
 }

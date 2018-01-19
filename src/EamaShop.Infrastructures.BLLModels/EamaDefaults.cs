@@ -5,7 +5,7 @@ using System.Text;
 namespace System
 {
     /// <summary>
-    /// 为网站
+    /// 为网站提供默认值和常量定义
     /// </summary>
     public static class EamaDefaults
     {

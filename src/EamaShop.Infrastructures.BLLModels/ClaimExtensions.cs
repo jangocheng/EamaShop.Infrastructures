@@ -15,8 +15,9 @@ namespace EamaShop.Infrastructures.BLLModels
         /// <summary>
         /// Gets typed <see cref="EamaUser"/> from <see cref="ClaimsPrincipal"/>
         /// </summary>
-        /// <param name="principal"></param>
-        /// <returns></returns>
+        /// <param name="principal">A <see cref="ClaimsPrincipal"/> create by eamauser</param>
+        /// <returns>Typed user</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="principal"/></exception>
         public static EamaUser GetTypedUser(this ClaimsPrincipal principal)
         {
             if (principal == null)
@@ -29,10 +30,11 @@ namespace EamaShop.Infrastructures.BLLModels
         /// <summary>
         /// Find first value name in current claims principal
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="principal"></param>
-        /// <param name="claimType"></param>
+        /// <typeparam name="T">The type of <see cref="Claim.Value"/> cast to.</typeparam>
+        /// <param name="principal">source principal stores user values</param>
+        /// <param name="claimType">value of <see cref="Claim.Type"/></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException">principal,claimType</exception>
         public static T FindFirstValue<T>(this ClaimsPrincipal principal, string claimType)
         {
             if (principal == null)
@@ -45,7 +47,7 @@ namespace EamaShop.Infrastructures.BLLModels
                 throw new ArgumentNullException(nameof(claimType));
             }
 
-            if (principal.Claims == null || !principal.Claims.Any())
+            if (principal.Claims == null || !principal.Claims.Any(x => x.Type == claimType))
             {
                 return default(T);
             }
@@ -58,9 +60,9 @@ namespace EamaShop.Infrastructures.BLLModels
         /// <summary>
         /// Find first value from identity.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="identity"></param>
-        /// <param name="claimType"></param>
+        /// <typeparam name="T">The type of <see cref="Claim.Value"/> cast to.</typeparam>
+        /// <param name="identity">source identity stores user values</param>
+        /// <param name="claimType">value of <see cref="Claim.Type"/></param>
         /// <returns></returns>
         public static T FindFirstValue<T>(this ClaimsIdentity identity, string claimType)
         {
