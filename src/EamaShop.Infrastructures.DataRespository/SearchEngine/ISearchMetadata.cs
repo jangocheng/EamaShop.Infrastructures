@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace System.Security.Claims
+namespace EamaShop.Infrastructures.DataRespository
 {
     /// <summary>
-    /// Claim 的扩展
+    /// 可搜索的数据源
     /// </summary>
-    public static class ClaimExtensions
+    public interface ISearchMetadata
     {
-
     }
 }
